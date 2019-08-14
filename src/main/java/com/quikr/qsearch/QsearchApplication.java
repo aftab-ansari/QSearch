@@ -3,10 +3,7 @@ package com.quikr.qsearch;
 import com.quikr.qsearch.consumer.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -47,6 +44,7 @@ public class QsearchApplication {
 		container.setConnectionFactory(connectionFactory);
 		container.setQueueNames(queueName);
 		container.setMessageListener(listenerAdapter);
+		container.setAcknowledgeMode(AcknowledgeMode.AUTO);
 		return container;
 	}
 
